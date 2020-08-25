@@ -1,1 +1,2 @@
 # Rubrica
+Progetto rubrica Turing
