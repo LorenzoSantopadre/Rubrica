@@ -39,7 +39,6 @@ public class FinestraEditor extends JDialog implements ActionListener {
 	
 	
 	
-	//uso la stringa per vedere se Ë un nuovo contatto o uno da modificare ??????
 	private void creaFinestra(JFrame parent, int contatto) {
 		setTitle("Editor dei contatti");
 		
@@ -57,7 +56,7 @@ public class FinestraEditor extends JDialog implements ActionListener {
 		lIndirizzo.setHorizontalAlignment(JLabel.CENTER);
 		JLabel lTelefono = new JLabel("Telefono");
 		lTelefono.setHorizontalAlignment(JLabel.CENTER);
-		JLabel lEta = new JLabel("Et‡");
+		JLabel lEta = new JLabel("Et√†");
 		lEta.setHorizontalAlignment(JLabel.CENTER);
 		
 		
@@ -100,15 +99,24 @@ public class FinestraEditor extends JDialog implements ActionListener {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
-	/*funzionalit‡ dei pulsanti*/			//da spostare in buttonactnuovo????
+	/*funzionalit√† dei pulsanti*/			
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("Annulla"))
 			dispose();
 		else {
-			Persona p = new Persona(nome.getText(), cognome.getText(),
-									indirizzo.getText(), telefono.getText(),
-									Integer.parseInt(eta.getText()));
+			/*correzione per mostrare un messaggio di errore se l'et√† inserita non √® un intero*/
+			Persona p = null;
+			try {
+				p = new Persona(nome.getText(), cognome.getText(),
+										indirizzo.getText(), telefono.getText(),
+										Integer.parseInt(eta.getText()));
+			}
+			catch(Exception exc) {
+				String messaggio = "L'et√† deve essere un numero intero!";
+				JOptionPane.showMessageDialog(new JFrame(), messaggio, "Errore!", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			
 			if(contattoDaModificare == -1) {
 			gr.aggiungiContatto(p);
