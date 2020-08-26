@@ -8,7 +8,6 @@ import javax.swing.JTable;
 public class ButtonActionModificaContatto implements ActionListener {
 	private JTable tabella;
 	private GestoreRubrica gr;
-	//private Persona p;
 	private JFrame frame;
 	
 	public ButtonActionModificaContatto(JFrame frame, JTable tabella, GestoreRubrica gr) {
@@ -25,7 +24,6 @@ public class ButtonActionModificaContatto implements ActionListener {
 			JOptionPane.showMessageDialog(new JFrame(),  messaggio, "Errore!", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
-			//String telefono = (String) tabella.getValueAt(contattoDaModificare, 2);
 			FinestraEditor f = new FinestraEditor(frame, gr, tabella, contattoDaModificare);
 			f.setLocationRelativeTo(frame);
 			f.pack();
